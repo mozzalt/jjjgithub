@@ -59,6 +59,21 @@ def print_contact(contact_list):
     for contact in contact_list:
         contact.print_myContact_info()
 
+def delete_contact(contact_list, del_name):
+    for i, contact in contact_list:
+        if contact.name == del_name:
+            del contact_list[i]
+
+
+def save_contact_list_toFile(contact_list):
+    f = open("contact_db.txt","wt","UTF-8")
+    for contact in contact_list:
+        f.write(contact.name + '\n')
+        f.write(contact.phone_number + '\n')
+        f.write(contact.e_mail + '\n')
+        f.write(contact.addr + '\n')
+    f.close()
+
 def run():
     '''
     kim_contact=Contact('김일구','010-4315-4512','kimilgu@gm ail.com','Seoul')
@@ -78,6 +93,10 @@ def run():
             contact_list.append(contact)
         elif menu == 2:
             print_contact(contact_list)
+
+        elif menu ==3:
+            del_name=input("Del Name : ")
+            delete_contact(contact_list, del_name)
 
         elif menu==4:
             break
